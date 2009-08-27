@@ -15,11 +15,13 @@ $.color = {
 
 	// Compare two colour tuples (must be of the same colour space)
 	isEqual: function ( tupleA, tupleB ) {
-		if (tupleA.length !== tupleB.length) { return false; }
+		if ( tupleA.length !== tupleB.length ) { return false; }
+		
 		var i = tupleA.length;
 		while (i--) {
-			if (tupleA[i] !== tupleB[i]) { return false; }
+			if ( tupleA[i] !== tupleB[i] ) { return false; }
 		}
+		
 		return true;
 	},
 	
@@ -27,16 +29,18 @@ $.color = {
 	fix: function ( tuple, format ) {
 		var i = format.length;
 		while (i--) {
-			switch(format.charAt(i)) {
-				case 'i': // integer
-					tuple[i] = Math.round(tuple[i]);
-					break;
-				case 'o': // octet; integer 0..255
-					tuple[i] = Math.min(255, Math.max(0, Math.round(tuple[i])));
-					break;
-				case '1': // one: float, 0..1
-					tuple[i] = Math.min(1, Math.max(0, tuple[i]));
-					break;
+			if ( typeof tuple[i] === 'number' ) {
+				switch(format.charAt(i)) {
+					case 'i': // integer
+						tuple[i] = Math.round(tuple[i]);
+						break;
+					case 'o': // octet; integer 0..255
+						tuple[i] = Math.min(255, Math.max(0, Math.round(tuple[i])));
+						break;
+					case '1': // one: float, 0..1
+						tuple[i] = Math.min(1, Math.max(0, tuple[i]));
+						break;
+				}
 			}
 		}
 		return tuple;
@@ -44,6 +48,11 @@ $.color = {
 	
 	self: function( tuple ) {
 		return tuple;
+	},
+	
+	// Common alpha channel retrieval, defaults to 1
+	alpha: function( val ) {
+		return typeof val === undefined ? 1 : val;
 	},
 	
 	// A collection of colour palettes
