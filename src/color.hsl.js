@@ -8,18 +8,14 @@
  * Depends:
  *	color.core.js
  *  color.rgb.js
+ *  color.huebased.js
  */
 (jQuery.color && (function($) {
 
-$.color.HSL = {
-
-	fix: function ( hsl ) {
-		hsl[0] = (hsl[0] + 1) % 1;
-		return $.color.fix(hsl, '1111');
-	},
+$.color.HSL = $.extend({
 
 	toHSL: $.color.self,
-	
+
 	toRGB: function ( hsl ) {
 		var h = hsl[0],
 			s = hsl[1],
@@ -42,24 +38,17 @@ $.color.HSL = {
 			hsl[3]
 		];
 	},
-	
-	hue: function ( hsl ) {
-		return hsl[0];
-	},
-	
+
 	// NOTE: the 'L' this is to distingush HSL from HSV which has a differing view of saturation
 	saturationL: function ( hsl ) {
 		return hsl[1];
 	},
-	
+
 	lightness: function ( hsl ) {
 		return hsl[2];
-	},
-	
-	alpha: function ( hsl ) {
-		return $.color.alpha(hsl[3]);
 	}
-};
+
+}, $.color.HueBased);
 
 $.color.RGB.toHSL = function ( rgb ) {
 	var r = rgb[0]/255,
@@ -87,6 +76,7 @@ $.color.RGB.toHSL = function ( rgb ) {
 
 $.color.fns.push(
 	'HSL.toHSL', 'HSL.toRGB', 'RGB.toHSL',
+	'HSL.complementary', 'HSL.analogous',
 	'HSL.hue', 'HSL.saturationL', 'HSL.lightness', 'HSL.alpha'
 );
 

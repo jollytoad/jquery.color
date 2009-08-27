@@ -8,16 +8,12 @@
  * Depends:
  *	color.core.js
  *  color.rgb.js
+ *  color.huebased.js
  */
 (jQuery.color && (function($) {
 
-$.color.HSV = {
+$.color.HSV = $.extend({
 
-	fix: function ( hsv ) {
-		hsv[0] = (hsv[0] + 1) % 1;
-		return $.color.fix(hsv, '1111');
-	},
-	
 	toHSV: $.color.self,
 
 	// HSV values are normalized to the range 0..1
@@ -41,32 +37,17 @@ $.color.HSV = {
 			case 5: return [v,p,q,a];
 		}
 	},
-	
-	complementary: function ( hsv, offset ) {
-		return [ (hsv[0] + 0.5 + (offset || 0)) % 1.0, hsv[1], hsv[2], hsv[3] ];
-	},
-	
-	analogous: function ( hsv, offset ) {
-		return [ (hsv[0] + 1.0 + (offset || 0)) % 1.0, hsv[1], hsv[2], hsv[3] ];
-	},
-	
-	hue: function ( hsv ) {
-		return hsv[0];
-	},
-	
+
 	// NOTE: the 'V' this is to distingush HSV from HSL which has a differing view of saturation
 	saturationV: function ( hsv ) {
 		return hsv[1];
 	},
-	
+
 	value: function ( hsv ) {
 		return hsv[2];
-	},
-	
-	alpha: function ( hsv ) {
-		return $.color.alpha(hsv[3]);
 	}
-};
+
+}, $.color.HueBased);
 
 $.color.RGB.toHSV = function ( rgb ) {
 	var r = rgb[0]/255,
