@@ -16,8 +16,6 @@ $.extend($.color, {
 	parse: function ( color ) {
 		var m;
 
-		// TODO: Add support for the hsl() syntax of CSS3 - if need arises
-
 		if ( typeof color === 'string' ) {
 
 			// Look for rgb(int,int,int) or rgba(int,int,int,float)
@@ -38,6 +36,11 @@ $.extend($.color, {
 			// Look for #fff
 			if ( (m = /^\s*#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])\s*$/.exec(color)) ) {
 				return [parseInt(m[1]+m[1],16), parseInt(m[2]+m[2],16), parseInt(m[3]+m[3],16), 1];
+			}
+
+			// Look for hsl(int,float%,float%) or hsla(int,float%,float%,float)
+			if ( (m = /^\s*hsl(a)?\(\s*([0-9]{1,3})\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*(?:,\s*([0-9]+(?:\.[0-9]+)?)\s*)?\)\s*$/.exec(color)) && !m[1] === !m[5] ) {
+				return [parseInt(m[2],10)/360, parseFloat(m[3])/100, parseFloat(m[4])/100, m[5] ? parseFloat(m[5]) : 1];
 			}
 
 			// Otherwise, we're most likely dealing with a named color
