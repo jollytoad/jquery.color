@@ -52,7 +52,7 @@ $.color = {
 	
 	// Common alpha channel retrieval, defaults to 1
 	alpha: function( val ) {
-		return typeof val === undefined ? 1 : val;
+		return val === undefined ? 1 : val;
 	},
 	
 	// A collection of colour palettes
