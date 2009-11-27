@@ -7,7 +7,7 @@
  *
  * Author: Mark Gibson (jollytoad at gmail dot com)
  *
- * http://www.adaptavist.com/display/free/jquery.color
+ * http://www.adaptavist.com/display/jQuery/Colour+Library
  */
 (jQuery.color || (function($) {
 
