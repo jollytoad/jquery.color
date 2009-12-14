@@ -5,6 +5,7 @@ MODULES = \
 	color.rgb.js \
 	color.huebased.js \
 	color.hsv.js \
+	color.hsl.js \
 	color.object.js \
 	color.parse.js \
 	color.related.js \
@@ -12,8 +13,7 @@ MODULES = \
 
 OPTIONAL_MODULES = \
 	color.palette.websafe.js \
-	color.palette.html4.js \
-	color.hsl.js
+	color.palette.html4.js
 
 include build/rules.mk
 
