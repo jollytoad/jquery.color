@@ -1,27 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" id="html">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>jQuery Colour Library Test Suite</title>
-	<link rel="Stylesheet" media="screen" href="qunit/testsuite.css" />
+	
+	<link rel="Stylesheet" media="screen" href="qunit/qunit.css" />
+	
 	<!-- Includes -->
-	<script type="text/javascript" src="include/jquery.js"></script>
-	<script type="text/javascript" src="../dist/jquery.color.js"></script>
-	<script type="text/javascript" src="qunit/testrunner.js"></script>
+	<script type="text/javascript" src="include/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../src/color.core.js"></script>
+	<script type="text/javascript" src="../src/color.rgb.js"></script>
+	<script type="text/javascript" src="../src/color.huebased.js"></script>
+	<script type="text/javascript" src="../src/color.hsv.js"></script>
+	<script type="text/javascript" src="../src/color.hsl.js"></script>
+	<script type="text/javascript" src="../src/color.object.js"></script>
+	<script type="text/javascript" src="../src/color.parse.js"></script>
+	<script type="text/javascript" src="../src/color.related.js"></script>
+	<script type="text/javascript" src="../src/color.palette.css3.js"></script>
+
+	<script type="text/javascript" src="qunit/qunit.js"></script>
 	<script type="text/javascript" src="unit/parse.js"></script>
 	<script type="text/javascript" src="unit/object.js"></script>
 </head>
 
-<body id="body">
-	<h1 id="header">jQuery Colour Library Test Suite</h1>
-	<h2 id="banner"></h2>
-	<h2 id="userAgent"></h2>
-	
-	<!-- Test HTML -->
-	<div></div>
-	
-	<ol id="tests"></ol>
-	
-	<div id="main"></div>
+<body>
+	<h1 id="qunit-header">jQuery Colour Library Test Suite</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+	<div id="bind-target"></div>
 </body>
 </html>
