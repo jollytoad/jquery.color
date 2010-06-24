@@ -40,6 +40,27 @@ $.Color = function ( color, space, name ) {
 	}
 };
 
+function modify( tuple, relative ) {
+	// Ensure the color to be modified is the same space as the argument
+	var color = $.Color.isInstance(tuple) && tuple.space !== this.space ?
+				this.to(tuple.space) :
+				new $.Color(this),
+		i = color.length,
+		mod = false;
+	
+	while( i-- ) {
+		if ( typeof tuple[i] === 'number' ) {
+			var v = relative ? color[i] + tuple[i] : tuple[i];
+			if ( v !== color[i] ) {
+				color[i] = v;
+				mod = true;
+			}
+		}
+	}
+	
+	return mod ? color.setName() : this;
+}
+
 $.Color.fn = $.Color.prototype = {
 
 	color: "@VERSION",
@@ -61,21 +82,12 @@ $.Color.fn = $.Color.prototype = {
 	
 	// Modify the individual colour channels, returning a new color object
 	modify: function( tuple ) {
-		// Ensure the color to be modified is the same space as the argument
-		var color = $.Color.isInstance(tuple) && tuple.space !== this.space ?
-					this.to(tuple.space) :
-					new $.Color(this),
-			i = color.length,
-			mod = false;
-		
-		while( i-- ) {
-			if ( typeof tuple[i] === 'number' && tuple[i] !== color[i] ) {
-				color[i] = tuple[i];
-				mod = true;
-			}
-		}
-		
-		return mod ? color.setName() : this;
+		return modify.call(this, tuple);
+	},
+	
+	// Adjust the colour channels relative to current values
+	adjust: function( tuple ) {
+		return modify.call(this, tuple, true);
 	},
 	
 	setName: function( newName ) {

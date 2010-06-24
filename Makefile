@@ -9,7 +9,8 @@ MODULES = \
 	color.object.js \
 	color.parse.js \
 	color.related.js \
-	color.palette.css3.js
+	color.palette.css3.js \
+	color.css.js
 
 OPTIONAL_MODULES = \
 	color.palette.websafe.js \
