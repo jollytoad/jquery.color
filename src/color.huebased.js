@@ -13,9 +13,9 @@
 
 $.color.HueBased = {
 
-	fix: function ( hx ) {
+	clamp: function ( hx ) {
 		hx[0] = (hx[0] + 1) % 1;
-		return $.color.fix(hx, '1111');
+		return $.color.clamp(hx, '1111');
 	},
 
 	complementary: function ( hx, offset ) {

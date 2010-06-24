@@ -76,8 +76,8 @@ $.Color.fn = $.Color.prototype = {
 	},
 
 	// Ensure colour channels values are within the valid limits
-	fix: function() {
-		return this.util().fix(this);
+	clamp: function() {
+		return this.util().clamp(this);
 	},
 	
 	// Modify the individual colour channels, returning a new color object

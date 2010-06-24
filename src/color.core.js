@@ -25,8 +25,8 @@ $.color = {
 		return true;
 	},
 	
-	// Fix the values in a colour tuple
-	fix: function ( tuple, format ) {
+	// Clamp the values in a colour tuple
+	clamp: function ( tuple, format ) {
 		var i = format.length;
 		while (i--) {
 			if ( typeof tuple[i] === 'number' ) {

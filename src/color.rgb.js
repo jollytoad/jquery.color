@@ -12,8 +12,8 @@
 
 $.color.RGB = {
 
-	fix: function ( rgb ) {
-		rgb = $.color.fix(rgb, 'ooo1');
+	clamp: function ( rgb ) {
+		rgb = $.color.clamp(rgb, 'ooo1');
 		return rgb;
 	},
 	
